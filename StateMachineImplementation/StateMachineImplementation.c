@@ -1,13 +1,12 @@
 #include"StateMachineImplementation.h"
 
-State_Machine_Return_Type returnError() {
+void printError() {
 
-	printf("Error \n");
-	return STATE_MACHINE_FINISHED_WITH_ERRORS;
+	//printf("Error \n");
 }
 
 void printCurrentState() {
-	printf("CurrentState : %d - Character : %c \n", state,*filePointer);
+	printf("CurrentState : %d - Character : %d \n", state,*filePointer);
 }
 
 
@@ -30,7 +29,8 @@ State_Machine_Return_Type parse()
 			}
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 
 			break;
@@ -48,7 +48,8 @@ State_Machine_Return_Type parse()
 			else
 			{
 
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -73,7 +74,8 @@ State_Machine_Return_Type parse()
 			}
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -118,7 +120,8 @@ State_Machine_Return_Type parse()
 			}
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 
 			break;
@@ -139,7 +142,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -150,12 +154,13 @@ State_Machine_Return_Type parse()
 			printCurrentState();
 			if (*filePointer == 0x0A) {
 				state = 8;
-
+				filePointer++;
 			}
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -175,7 +180,8 @@ State_Machine_Return_Type parse()
 			}
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -192,7 +198,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -209,7 +216,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -226,7 +234,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -251,7 +260,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -268,7 +278,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -285,7 +296,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
@@ -302,7 +314,8 @@ State_Machine_Return_Type parse()
 
 			else
 			{
-				returnError();
+				printError();
+				return STATE_MACHINE_FINISHED_WITH_ERRORS;
 			}
 			break;
 		}
