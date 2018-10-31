@@ -1,15 +1,34 @@
 #include"StateMachineImplementation.h"
 
+StateMachineStructure stateMachineData;
+
+static uint8_t lineCount = 0;
+static uint8_t lineSize = 0;
+
+//Used to print something if an error occurs.
 void printError() {
 
 	//printf("Error \n");
 }
 
+//Prints the current state.
 void printCurrentState() {
-	printf("CurrentState : %d - Character : %d \n", state,*filePointer);
+	printf("CurrentState : %d - Character : %d \n", state, *filePointer);
+}
+
+//Prints the string that was memorized.
+void printStateMachineData() {
+	printf("State Machine Content : \n");
+
+	int i;
+	for (i = 0; i < lineCount; i++) {
+		printf("%s", stateMachineData.content[i]);
+		printf("\n");
+	}
 }
 
 
+//The main function.
 State_Machine_Return_Type parse()
 {
 
@@ -81,34 +100,37 @@ State_Machine_Return_Type parse()
 		}
 		case 3:
 		{	printCurrentState();
+
+
 		if (*filePointer != 0x0D)
 		{
 			//The string begins here.
+			if (lineSize < Max_String_Size) {
+				stateMachineData.content[lineCount][lineSize] = *filePointer;
+				lineSize++;
+			}
 			filePointer++;
-			state = 4;
-		}
-
-		break;
-		}
-		case 4:
-		{	printCurrentState();
-		if (*filePointer != 0x0D)
-		{
-			state = 4;
-			filePointer++;
+			state = 3;
 		}
 
 		else if (*filePointer == 0x0D)
 		{
 			//The string ended here.
-			//TODO Retain the string i a variable.
+			stateMachineData.content[lineCount][lineSize] = '\0';
+			//Reset the line size for the new line.
+			lineSize = 0;
+			if (lineCount < Max_String_Count)
+				lineCount++;
+
 
 			state = 5;
 			filePointer++;
 
 		}
+
 		break;
 		}
+		
 		case 5:
 
 		{
@@ -329,9 +351,6 @@ State_Machine_Return_Type parse()
 
 				 return STATE_MACHINE_NOT_FINISHED;
 		}
-
-		
-
 
 	}
 }

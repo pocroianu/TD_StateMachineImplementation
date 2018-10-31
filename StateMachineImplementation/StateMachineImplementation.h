@@ -6,8 +6,16 @@
 #ifndef SMI_H
 #define SMI_H
 
-#define Max_String_Size 20000
+#define Max_String_Size 40000
 #define Max_Data_Size 150
+#define Max_String_Count 100
+
+
+char *filePointer;
+//In here we will store the state.
+static uint32_t state = 0;
+
+void printStateMachineData();
 
 typedef enum
 {
@@ -21,14 +29,9 @@ State_Machine_Return_Type parse();
 
 typedef struct
 {
-	char string[Max_Data_Size][Max_Data_Size + 1]; //+1 because of the endline character
+	char content[Max_Data_Size][Max_Data_Size + 1]; //+1 because of the endline character
 
 }StateMachineStructure;
 
-extern StateMachineStructure stateMachineStructure;
-
-char *filePointer;
-//In here we will store the state.
-static uint32_t state = 0;
 
 #endif
